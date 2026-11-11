@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Contacto — Atletas Olímpicos STP</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">★</span><span><small>COMISSÃO DOS</small><strong class="brand-name"><b>ATLETAS</b> <i>OLÍMPICOS</i> <em>STP</em></strong></span></a>
+    <button class="menu-toggle" type="button" aria-label="Abrir menu">☰</button>
+    <nav><a href="index.html">Início</a><a href="sobre.html">Sobre nós</a><a href="portfolio.html">Portfólio</a><a class="active" href="contacto.html">Contacto</a></nav>
+    <a class="admin-button" href="admin.html">🔒 Área privada</a>
+  </header>
+  <main>
+    <section class="contact-section">
+      <div>
+        <p class="eyebrow">CONTACTO</p>
+        <h1>Vamos<br><span>conversar.</span></h1>
+        <p>Para parcerias, comunicação ou informações sobre a Comissão dos Atletas Olímpicos Santomenses, envie-nos uma mensagem.</p>
+        <p class="contact-detail">São Tomé e Príncipe<br><a data-contact-email></a></p>
+        <p class="contact-detail">Telemóvel<br><a href="tel:935532096">935 532 096</a></p>
+      </div>
+      <form id="contact-form">
+        <div class="contact-honeypot" aria-hidden="true"><label>Não preencher<input name="company_website" tabindex="-1" autocomplete="off"></label></div>
+        <label>Nome<input required name="name" autocomplete="name" maxlength="120"></label>
+        <label>Email<input required type="email" name="email" autocomplete="email" maxlength="254"></label>
+        <label>Mensagem<textarea required name="message" rows="6" maxlength="5000"></textarea></label>
+        <button class="btn primary" type="submit">Enviar mensagem</button>
+        <p class="form-status" role="status" aria-live="polite"></p>
+        <p class="form-privacy">Ao enviar, o nome, email e mensagem serão processados pelo EmailJS para serem encaminhados à Comissão.</p>
+      </form>
+    </section>
+  </main>
+  <footer>© <span data-year></span> Atletas Olímpicos de São Tomé e Príncipe. Todos os direitos reservados.</footer>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@5/dist/email.min.js"></script>
+  <script src="contact-email.js"></script>
+  <script src="emailjs-config.js"></script>
+  <script src="app.js?v=20261111-4"></script>
+</body>
+</html>

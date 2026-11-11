@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-PT" data-auth-provider="firebase">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Área privada — Atletas Olímpicos STP</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">★</span><span><small>COMISSÃO DOS</small><strong class="brand-name"><b>ATLETAS</b> <i>OLÍMPICOS</i> <em>STP</em></strong></span></a>
+    <a class="admin-button" href="index.html">← Ver site</a>
+  </header>
+  <main class="admin-page">
+    <section id="login-panel" class="auth-card">
+      <p class="eyebrow">ÁREA PRIVADA</p>
+      <h1>Início de<br><span>sessão.</span></h1>
+      <p>Entre com a conta criada no Firebase. Para publicar, essa conta também tem de estar autorizada como administradora no Firestore. Consulte <a href="FIRESTORE_SETUP.md" target="_blank" rel="noopener">as instruções</a>.</p>
+      <form id="login-form" method="post" autocomplete="off">
+        <label>Email<input id="email" name="private-login-account" required type="email" autocomplete="off" autocapitalize="none" spellcheck="false"></label>
+        <label>Palavra-passe<input id="password" name="private-login-secret" required type="password" autocomplete="new-password"></label>
+        <button class="btn primary" type="submit" disabled>A preparar login…</button>
+        <button id="reset-password" class="text-button" type="button" disabled>Enviar ligação de redefinição</button>
+        <p class="reset-help">Introduza primeiro o email da conta. Depois verifique a caixa de entrada e a pasta de spam.</p>
+        <p class="form-status" role="status" aria-live="polite">Se este aviso não desaparecer, inicie o site com INICIAR_SITE.bat e use o endereço localhost, não file://.</p>
+      </form>
+    </section>
+    <section id="dashboard" hidden>
+      <div class="dashboard-head"><div><p class="eyebrow">ADMINISTRAÇÃO</p><h1>Publicações</h1></div><button id="logout" class="btn secondary" type="button">Sair</button></div>
+      <div class="admin-layout">
+        <form id="post-form" class="post-form">
+          <input id="edit-id" type="hidden">
+          <h2>Nova publicação</h2>
+          <label>Título<input id="post-title" required maxlength="100"></label>
+          <label>Conteúdo<textarea id="post-text" required rows="7" maxlength="1200"></textarea></label>
+          <label>Imagem (opcional)<input id="post-image" type="file" accept="image/*"></label>
+          <button class="btn primary" type="submit">Publicar conteúdo</button>
+          <button id="cancel-edit" class="text-button" type="button" hidden>Cancelar edição</button>
+        </form>
+        <section><h2>Conteúdos publicados</h2><div class="admin-posts"></div></section>
+      </div>
+    </section>
+  </main>
+  <footer>© <span data-year></span> Atletas Olímpicos de São Tomé e Príncipe.</footer>
+  <script src="app.js?v=20261111-4"></script>
+  <script type="module" src="firebase-auth.js?v=20261111-4"></script>
+</body>
+</html>

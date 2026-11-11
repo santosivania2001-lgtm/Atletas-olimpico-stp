@@ -1,0 +1,43 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+        && get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    function validPost(post) {
+      return post.keys().hasAll(['title', 'text', 'image', 'createdAt', 'updatedAt'])
+        && post.keys().hasOnly(['title', 'text', 'image', 'createdAt', 'updatedAt'])
+        && post.title is string
+        && post.title.size() > 0
+        && post.title.size() <= 100
+        && post.text is string
+        && post.text.size() > 0
+        && post.text.size() <= 1200
+        && post.image is string
+        && post.image.size() <= 700000
+        && post.createdAt is timestamp
+        && post.updatedAt is timestamp;
+    }
+
+    match /admins/{userId} {
+      allow get: if request.auth != null && request.auth.uid == userId;
+      allow list, create, update, delete: if false;
+    }
+
+    match /posts/{postId} {
+      allow read: if true;
+      allow create: if isAdmin()
+        && validPost(request.resource.data)
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time;
+      allow update: if isAdmin()
+        && validPost(request.resource.data)
+        && request.resource.data.createdAt == resource.data.createdAt
+        && request.resource.data.updatedAt == request.time;
+      allow delete: if isAdmin();
+    }
+  }
+}
